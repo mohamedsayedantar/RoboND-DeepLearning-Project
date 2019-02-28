@@ -1,5 +1,6 @@
-# Deep Learning Project "Follow Me Project" [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
+# Deep Learning Project "Follow Me" [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 
+flying a drone in simulation to locate and follow a moving target by analysing individual camera from the front facing of the drone, then by classifying each pixel of each frame using FCN (fully convolutional neural network)
 
 
 ## contents
@@ -10,6 +11,7 @@
 ### 4. 
 
 
+## Deep Neural Networks :-
 
 
 
