@@ -8,13 +8,16 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 
 ## PROJECT OUTLINES
 
-#### 1. Deep Neural Networks
-#### 2. Convolutional Neural Networks
-#### 3. Fully Convolutional Neural Networks
-#### 4. 
+1. Neural Networks & Deep Neural Networks
+2. Convolutional Neural Networks
+3. Fully Convolutional Neural Networks
+4. 
 
 
-## Deep Neural Networks :-
+
+## Neural Networks & Deep Neural Networks :-
+
+##### what is the neural network ?
 
 
 
