@@ -11,21 +11,37 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 1. Neural Networks & Deep Neural Networks
 2. Convolutional Neural Networks
 3. Fully Convolutional Neural Networks
-4. 
+. References
 
 
 
 ## Neural Networks & Deep Neural Networks :-
 
-### what is the neural network ?
+### what is neural networks or ANN (Artificial neural networks)
+A neural network is a system of hardware and/or software patterned after the operation of neurons in the human brain. Neural networks (also called artificial neural networks) are a variety of deep learning technology, which also falls under the umbrella of artificial intelligence, or AI.
+
+Commercial applications of these technologies generally focus on solving complex signal processing or pattern recognition problems. Examples of significant commercial applications since 2000 include handwriting recognition for check processing, speech-to-text transcription, oil-exploration data analysis, weather prediction and facial recognition.
+
+Neural neworks are typically organized in layers. Layers are made up of a number of interconnected 'nodes' which contain an 'activation function'. Patterns are presented to the network via the 'input layer', which communicates to one or more 'hidden layers' where the actual processing is done via a system of weighted 'connections'. The hidden layers then link to an 'output layer' where the answer is output as shown in the graphic below.
+
+![drone2](http://pages.cs.wisc.edu/~bolo/shipyard/neural/nn_schematic.gif)
+
+### How neural networks learn
+Typically, a neural network is initially trained or fed large amounts of data. Training consists of providing input and telling the network what the output should be. For example, to build a network to identify the faces of actors, initial training might be a series of pictures of actors, nonactors, masks, statuary, animal faces and so on. Each input is accompanied by the matching identification, such as actors' names, "not actor" or "not human" information. Providing the answers allows the model to adjust its internal weightings to learn how to do its job better. For example, if nodes David, Dianne and Dakota tell node Ernie the current input image is a picture of Brad Pitt, but node Durango says it is Betty White, and the training program confirms it is Pitt, Ernie will decrease the weight it assigns to Durango's input and increase the weight it gives to that of David, Dianne and Dakota.
+
+### what about the deep neural network
+A deep neural network is a neural network with a certain level of complexity, a neural network with more than two layers.
+![DNN](https://cdn.ttgtmedia.com/rms/onlineImages/deep_neural_network.jpg)
+
+### Types of neural networks
 
 
 
 
-
-
-
-
+###References
+http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
+https://searchenterpriseai.techtarget.com/definition/neural-network
+https://en.wikipedia.org/wiki/Deep_learning
 
 
 
