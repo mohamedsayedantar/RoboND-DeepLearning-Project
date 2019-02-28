@@ -39,8 +39,11 @@ A deep neural network is a neural network with a certain level of complexity, a 
 
 
 ###References
+
 http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
+
 https://searchenterpriseai.techtarget.com/definition/neural-network
+
 https://en.wikipedia.org/wiki/Deep_learning
 
 
