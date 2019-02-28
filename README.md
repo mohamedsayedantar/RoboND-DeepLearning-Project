@@ -2,13 +2,16 @@
 
 flying a drone in simulation to locate and follow a moving target by analysing individual camera from the front facing of the drone, then by classifying each pixel of each frame using FCN (fully convolutional neural network)
 
+![drone](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/1.png)
+![drone2](https://investorsking.com/wp-content/uploads/2017/04/Drones.jpg)
 
-## contents
 
-### 1. Deep Neural Networks
-### 2. Convolutional Neural Networks
-### 3. Fully Convolutional Neural Networks
-### 4. 
+## PROJECT OUTLINES
+
+#### 1. Deep Neural Networks
+#### 2. Convolutional Neural Networks
+#### 3. Fully Convolutional Neural Networks
+#### 4. 
 
 
 ## Deep Neural Networks :-
