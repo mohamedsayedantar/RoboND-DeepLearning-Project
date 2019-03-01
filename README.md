@@ -34,11 +34,22 @@ A deep neural network is a neural network with a certain level of complexity, a 
 ![DNN](https://cdn.ttgtmedia.com/rms/onlineImages/deep_neural_network.jpg)
 
 ### Types of neural networks
+Neural networks are sometimes described in terms of their depth, including how many layers they have between input and output, or the model's so-called hidden layers. This is why the term neural network is used almost synonymously with deep learning. They can also be described by the number of hidden nodes the model has or in terms of how many inputs and outputs each node has. Variations on the classic neural network design allow various forms of forward and backward propagation of information among tiers.
+
+### Convolutional Neural Networks
 
 
 
 
-###References
+
+
+
+
+
+
+
+
+### References
 
 http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
 
