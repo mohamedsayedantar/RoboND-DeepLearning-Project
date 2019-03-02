@@ -480,12 +480,8 @@ by tuning the Hyperparameters to get the best model, the following are 5 Hyperpa
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set4_1.png)
 
 
-
-
-
-
-
 ### start training by running:-
+
 ```python
 from workspace_utils import active_session
 # Keeping Your Session Active
@@ -519,11 +515,28 @@ with active_session():
 
 ## best model and Hyperparameters
 
+### for the 5 sets
 
+for set 1:-
 
+parameter | value
+---- | ----
+learning_rate | 0.001
+batch_size | 25
+num_epochs | 10
+steps_per_epoch | 200
+validation_steps | 50
+workers | 2
+weight | 0.691428571
+final_IoU | 0.425336
+final_score | 0.2940896
 
+![]()
 
-
+![]()
+![]()
+![]()
+![]()
 
 
 
