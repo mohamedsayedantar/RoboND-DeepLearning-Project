@@ -531,12 +531,67 @@ weight | 0.691428571
 final_IoU | 0.425336
 final_score | 0.2940896
 
-![]()
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set1.png)
 
-![]()
-![]()
-![]()
-![]()
+for set 2:-
+
+parameter | value
+---- | ----
+learning_rate | 0.0001
+batch_size | 25
+num_epochs | 50
+steps_per_epoch | 200
+validation_steps | 50
+workers | 2
+weight | 0.69031531
+final_IoU | 0.485894
+final_score | 0.335420
+
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set2.png)
+
+sor set 3:-
+
+parameter | value
+---- | ----
+learning_rate | 0.00025
+batch_size | 25
+num_epochs | 100
+steps_per_epoch | 200
+validation_steps | 50
+workers | 2
+weight | 0.6977777
+final_IoU | 0.5054349
+final_score | 0.3526812
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set3.png)
+
+for set 4:-
+
+parameter | value
+---- | ----
+learning_rate | 0.001
+batch_size | 25
+num_epochs | 50
+steps_per_epoch | 200
+validation_steps | 50
+workers | 2
+weight | 0.7393258
+final_IoU | 0.5415548
+final_score | 0.4003854
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set4.png)
+
+for set 5:-
+parameter | value
+---- | ----
+learning_rate | 0.001
+batch_size | 25
+num_epochs | 100
+steps_per_epoch | 200
+validation_steps | 50
+workers | 2
+weight | 0.7389867
+final_IoU | 0.5574194
+final_score | 0.41192560
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_2.png)
 
 
 
