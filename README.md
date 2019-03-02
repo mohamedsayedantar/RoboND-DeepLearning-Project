@@ -29,7 +29,7 @@ Neural neworks are typically organized in layers. Layers are made up of a number
 ### How neural networks learn
 Typically, a neural network is initially trained or fed large amounts of data. Training consists of providing input and telling the network what the output should be. For example, to build a network to identify the faces of actors, initial training might be a series of pictures of actors, nonactors, masks, statuary, animal faces and so on. Each input is accompanied by the matching identification, such as actors' names, "not actor" or "not human" information. Providing the answers allows the model to adjust its internal weightings to learn how to do its job better. For example, if nodes David, Dianne and Dakota tell node Ernie the current input image is a picture of Brad Pitt, but node Durango says it is Betty White, and the training program confirms it is Pitt, Ernie will decrease the weight it assigns to Durango's input and increase the weight it gives to that of David, Dianne and Dakota.
 
-### what about the deep neural network
+### Deep Neural Network
 A deep neural network is a neural network with a certain level of complexity, a neural network with more than two layers.
 ![DNN](https://cdn.ttgtmedia.com/rms/onlineImages/deep_neural_network.jpg)
 
@@ -41,9 +41,7 @@ Neural networks are sometimes described in terms of their depth, including how m
 In deep learning, a convolutional neural network (CNN, or ConvNet) is a class of deep neural networks, most commonly applied to analyzing visual imagery.
 
 The first step for a CNN is to break up the image into smaller pieces. We do this by selecting a width and height that defines a filter.
-
 The filter looks at small pieces, or patches, of the image. These patches are the same size as the filter.
-
 ![conv](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/5840ffda_filter-depth/filter-depth.png)
 
 In a normal, non-convolutional neural network, we would have ignored this adjacency. In a normal network, we would have connected every pixel in the input image to a neuron in the next layer. In doing so, we would not have taken advantage of the fact that pixels in an image are close together for a reason and have special meaning.
@@ -76,7 +74,9 @@ For example, max pooling uses the maximum value from each of a cluster of neuron
 
 ![pooling](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/582aac09_max-pooling/max-pooling.png)
 
+#### 1x1 convolutions
 
+![1x1](https://raw.githubusercontent.com/iamaaditya/iamaaditya.github.io/master/images/conv_arithmetic/full_padding_no_strides_transposed_small.gif)
 
 
 
