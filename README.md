@@ -687,11 +687,33 @@ the output should be something like this
 
 
 
+**to calculate the accuracy**
+by running:
 
+To sum all the true positives, etc from the three datasets to get a weight for the score
+```python
+true_pos = true_pos1 + true_pos2 + true_pos3
+false_pos = false_pos1 + false_pos2 + false_pos3
+false_neg = false_neg1 + false_neg2 + false_neg3
 
+weight = true_pos/(true_pos+false_neg+false_pos)
+print(weight)
+```
+The IoU for the dataset that never includes the hero is excluded from grading
+```python
+final_IoU = (iou1 + iou3)/2
+print(final_IoU)
+```
+for the final grade score
+```python
+final_score = final_IoU * weight
+print(final_score)
+```
 
-
-
+for set 5 output 
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_6.png)
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_7.png)
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_8.png)
 
 
 
