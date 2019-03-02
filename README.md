@@ -517,7 +517,7 @@ with active_session():
 
 ### for the 5 sets
 
-for set 1:-
+**for set 1:-**
 
 parameter | value
 ---- | ----
@@ -530,10 +530,9 @@ workers | 2
 weight | 0.691428571
 final_IoU | 0.425336
 final_score | 0.2940896
-
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set1.png)
 
-for set 2:-
+**for set 2:-**
 
 parameter | value
 ---- | ----
@@ -546,10 +545,9 @@ workers | 2
 weight | 0.69031531
 final_IoU | 0.485894
 final_score | 0.335420
-
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set2.png)
 
-sor set 3:-
+**sor set 3:-**
 
 parameter | value
 ---- | ----
@@ -564,7 +562,7 @@ final_IoU | 0.5054349
 final_score | 0.3526812
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set3.png)
 
-for set 4:-
+**for set 4:-**
 
 parameter | value
 ---- | ----
@@ -579,7 +577,8 @@ final_IoU | 0.5415548
 final_score | 0.4003854
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set4.png)
 
-for set 5:-
+**for set 5:-**
+
 parameter | value
 ---- | ----
 learning_rate | 0.001
@@ -592,6 +591,104 @@ weight | 0.7389867
 final_IoU | 0.5574194
 final_score | 0.41192560
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_2.png)
+
+
+**to save the model**
+```python
+# Save your trained model weights
+weight_file_name = 'model_weights3'
+model_tools.save_network(model, weight_file_name)
+```
+
+**to load old model**
+```python
+weight_file_name = 'model_weights'
+restored_model = model_tools.load_network(weight_file_name)
+```
+
+The following cell will write predictions to files and return paths to the appropriate directories. The run_num parameter is used to define or group all the data for a particular model run.
+```python
+run_num = 'run_1'
+
+val_with_targ, pred_with_targ = model_tools.write_predictions_grade_set(model,
+                                        run_num,'patrol_with_targ', 'sample_evaluation_data') 
+
+val_no_targ, pred_no_targ = model_tools.write_predictions_grade_set(model, 
+                                        run_num,'patrol_non_targ', 'sample_evaluation_data') 
+
+val_following, pred_following = model_tools.write_predictions_grade_set(model,
+                                        run_num,'following_images', 'sample_evaluation_data')
+```
+
+**images while following the target**
+by running
+```python
+im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','following_images', run_num) 
+for i in range(3):
+    im_tuple = plotting_tools.load_images(im_files[i])
+    plotting_tools.show_images(im_tuple)
+```
+
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out1.png)
+
+**images while at patrol without target**
+by running
+```python
+im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','patrol_non_targ', run_num) 
+for i in range(3):
+    im_tuple = plotting_tools.load_images(im_files[i])
+    plotting_tools.show_images(im_tuple)
+```
+
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out2.png)
+
+**images while at patrol with target**
+by running 
+
+```python
+im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','patrol_with_targ', run_num) 
+for i in range(3):
+    im_tuple = plotting_tools.load_images(im_files[i])
+    plotting_tools.show_images(im_tuple)
+```
+
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out3.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
