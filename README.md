@@ -88,11 +88,15 @@ In addition, 1x1xD convolutions not only reduce the features in input to the nex
 
 ![1x1](https://raw.githubusercontent.com/iamaaditya/iamaaditya.github.io/master/images/conv_arithmetic/full_padding_no_strides_transposed_small.gif)
 
+#### 3x3 examble 
+
+![3x3](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581a58be_convolution-schematic/convolution-schematic.gif)
+
 #### Inception module
 
 The key idea for devising this architecture is to deploy multiple convolutions with multiple filters and pooling layers simultaneously in parallel within the same layer (inception layer). For example, in the architecture shown in this diagram (figure a) employs convolution with 1x1 filters as well as 3x3 and 5x5 filters and a max pooling layer. Figure b demonstrates how the use of 1x1 convolution filters can achieve dimensionality reduction (since no. of channels is reduced).
 
-![inc](https://i.stack.imgur.com/iNy2U.png) ![3x3](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/581a58be_convolution-schematic/convolution-schematic.gif)
+![inc](https://i.stack.imgur.com/iNy2U.png)
 
 The intention is to let the neural network learn the best weights when training the network and automatically select the more useful features. Additionally, it intends to reduce the no. of dimensions so that the no. of units and layers can be increased at later stages. The side-effect of this is to increase the computational cost for training this layer.
 
