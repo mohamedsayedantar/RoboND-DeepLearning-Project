@@ -310,6 +310,18 @@ $ python follower.py my_amazing_model.h5
 
 **Note:** If you'd like to see an overlay of the detected region on each camera frame from the drone, simply pass the `--pred_viz` parameter to `follower.py`
 
+### Intersection over Union (IoU) metric
+
+Intersect over Union (IoU) is a metric that allows us to evaluate how similar our predicted bounding box is to the ground truth bounding box. The idea is that we want to compare the ratio of the area where the two boxes overlap to the total combined area of the two boxes.
+
+The formula for calculating IoU is as follows
+
+![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_formula.png)
+
+IoU is quite intuitive to interpret. A score of 1 means that the predicted bounding box precisely matches the ground truth bounding box. A score of 0 means that the predicted and true bounding box do not overlap at all.
+
+![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_scores.png)
+
 ## project code
 
 first importing the required libraries and methods
@@ -724,13 +736,15 @@ for set 5 output
 - trying various architectures may lead to find a better one than the previous one.
 
 
+
 **would this model and data work well for following another object (dog, cat, car, etc.) instead of a human ?**
 yes we can use the same model to identify another objects or any other human or animals if needed, for the data we have to change the pointer to this new target which we want to follow, by changing the mask pictures with new set containing the new target, but may using the same number of layers and same hayperparameters lead to different accuracy with the other target.
 
 
-**note:** sometimes i stop the the training at any epoch to prevent overfitting.
 
-
+**Notes :**  
+- sometimes i stop the the training at any epoch to prevent overfitting.
+- the best weights `RoboND-DeepLearning-Project/data/weights/model_weights3` `RoboND-DeepLearning-Project/data/weights/config_model_weights3` and the HTML file for them is `model_training3.html`
 
 
 
