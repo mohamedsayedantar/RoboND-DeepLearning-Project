@@ -76,11 +76,25 @@ For example, max pooling uses the maximum value from each of a cluster of neuron
 
 #### 1x1 convolutions
 
+We can think about 1x1xD convolution as a dimensionality reduction technique when it's placed somewhere into a network.
+
+If we have an input volume of 100x100x512 and we convolve it with a set of D filters each one with size 1x1x512 we reduce the number of features from 512 to D. The output volume is, therefore, 100x100xD.
+
+As we can see this (1x1x512)xD convolution is mathematically equivalent to a fully connected layer. The main difference is that whilst FC layer requires the input to have a fixed size, the convolutional layer can accept in input every volume with spatial extent greater or equal than 100x100.
+
+A 1x1xD convolution can substitute any fully connected layer because of this equivalence.
+
+In addition, 1x1xD convolutions not only reduce the features in input to the next layer, but also introduces new parameters and new non-linearity into the network that will help to increase model accuracy.
+
 ![1x1](https://raw.githubusercontent.com/iamaaditya/iamaaditya.github.io/master/images/conv_arithmetic/full_padding_no_strides_transposed_small.gif)
 
+#### Inception module
 
+The key idea for devising this architecture is to deploy multiple convolutions with multiple filters and pooling layers simultaneously in parallel within the same layer (inception layer). For example, in the architecture shown in this diagram (figure a) employs convolution with 1x1 filters as well as 3x3 and 5x5 filters and a max pooling layer. Figure b demonstrates how the use of 1x1 convolution filters can achieve dimensionality reduction (since no. of channels is reduced).
 
+![inc](https://i.stack.imgur.com/iNy2U.png)
 
+The intention is to let the neural network learn the best weights when training the network and automatically select the more useful features. Additionally, it intends to reduce the no. of dimensions so that the no. of units and layers can be increased at later stages. The side-effect of this is to increase the computational cost for training this layer.
 
 
 
