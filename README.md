@@ -750,7 +750,7 @@ yes we can use the same model to identify another objects or any other human or 
 
 
 **Notes :**  
-- sometimes i stop the the training at any epoch to prevent overfitting as follows
+- sometimes i stop the the training at any epoch to prevent overfitting as follows or the required loss and val_loss achieved.
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/note.png)
 
 - the best weights `RoboND-DeepLearning-Project/data/weights/model_weights3` `RoboND-DeepLearning-Project/data/weights/config_model_weights3` and the HTML file for them is `model_training3.html`
