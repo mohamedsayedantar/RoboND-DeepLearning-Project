@@ -38,6 +38,53 @@ Neural networks are sometimes described in terms of their depth, including how m
 
 ### Convolutional Neural Networks
 
+In deep learning, a convolutional neural network (CNN, or ConvNet) is a class of deep neural networks, most commonly applied to analyzing visual imagery.
+
+The first step for a CNN is to break up the image into smaller pieces. We do this by selecting a width and height that defines a filter.
+
+The filter looks at small pieces, or patches, of the image. These patches are the same size as the filter.
+
+![conv](https://d17h27t6h515a5.cloudfront.net/topher/2016/December/5840ffda_filter-depth/filter-depth.png)
+
+In a normal, non-convolutional neural network, we would have ignored this adjacency. In a normal network, we would have connected every pixel in the input image to a neuron in the next layer. In doing so, we would not have taken advantage of the fact that pixels in an image are close together for a reason and have special meaning.
+
+By taking advantage of this local structure, our CNN learns to classify local patterns, like shapes and objects, in an image.
+
+#### Filter Depth
+
+It's common to have more than one filter. Different filters pick up different qualities of a patch. For example, one filter might look for a particular color, while another might look for a kind of object of a specific shape. The amount of filters in a convolutional layer is called the filter depth.
+
+![filter](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/58377e4f_neilsen-pic/neilsen-pic.png)
+
+If we have a depth of k, we connect each patch of pixels to k neurons in the next layer. This gives us the height of k in the next layer, as shown below. In practice, k is a hyperparameter we tune, and most CNNs tend to pick the same starting values.
+
+#### Parameter Sharing
+
+When we are trying to classify a picture of a cat, we don’t care where in the image a cat is. If it’s in the top left or the bottom right, it’s still a cat in our eyes. We would like our CNNs to also possess this ability known as translation invariance.
+
+the classification of a given patch in an image is determined by the weights and biases corresponding to that patch.
+
+If we want a cat that’s in the top left patch to be classified in the same way as a cat in the bottom right patch, we need the weights and biases corresponding to those patches to be the same, so that they are classified the same way.
+
+This is exactly what we do in CNNs. The weights and biases we learn for a given output layer are shared across all patches in a given input layer. Note that as we increase the depth of our filter, the number of weights and biases we have to learn still increases, as the weights aren't shared across the output channels.
+
+#### Pooling
+
+Convolutional networks may include local or global pooling layers, which combine the outputs of neuron clusters at one layer into a single neuron in the next layer.
+
+For example, max pooling uses the maximum value from each of a cluster of neurons at the prior layer, Another example is average pooling, which uses the average value from each of a cluster of neurons at the prior layer.
+
+![pooling](https://d17h27t6h515a5.cloudfront.net/topher/2016/November/582aac09_max-pooling/max-pooling.png)
+
+
+
+
+
+
+
+
+
+
 
 
 
