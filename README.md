@@ -781,3 +781,5 @@ https://en.wikipedia.org/wiki/Deep_learning
 https://datascience.stackexchange.com/questions/14984/what-is-an-inception-layer
 
 https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1
+
+http://ronny.rest/tutorials/module/localization_001/iou/
