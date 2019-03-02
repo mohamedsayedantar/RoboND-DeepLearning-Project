@@ -106,6 +106,70 @@ The intention is to let the neural network learn the best weights when training 
 
 ## Fully Convolutional Neural Networks
 
+Image Classification: Classify the object (Recognize the object class) within an image.
+
+Object Detection: Classify and detect the object(s) within an image with bounding box(es) bounded the object(s). That means we also need to know the class, position and size of each object.
+
+Semantic Segmentation: Classify the object class for each pixel within an image. That means there is a label for each pixel.
+
+In classification, conventionally, an input image is downsized and goes through the convolution layers and fully connected (FC) layers, and output one predicted label for the input image, as follows:
+![](https://cdn-images-1.medium.com/max/1600/1*ErOVnlmtWYFGpnpvKJImKw.png)
+
+in case we turn the FC layers into 1×1 convolutional layers:
+![](https://cdn-images-1.medium.com/max/1600/1*11XDuwNHHRE7EB_fu_TzCg.png)
+
+And if the image is not downsized, the output will not be a single label. Instead, the output has a size smaller than the input image:
+![](https://cdn-images-1.medium.com/max/1600/1*T-tYcj11_qySDHTRhlF9pQ.png)
+
+If we upsample the output above, then we can calculate the pixelwise output (label map) as below:
+![](https://cdn-images-1.medium.com/max/1600/1*LtSSJ9QP0Y9qWG9nz9sb2w.png)
+![](https://cdn-images-1.medium.com/max/1600/1*NXNGhfSyzQcKzoOSt-Z0Ng.png)
+
+### transposed convolutions
+Transposed Convolutions help in upsampling the previous layer to a desired resolution or dimension. Suppose you have a 3x3 input and you wish to upsample that to the desired dimension of 6x6. The process involves multiplying each pixel of your input with a kernel or filter. If this filter was of size 5x5, the output of this operation will be a weighted kernel of size 5x5. This weighted kernel then defines your output layer.
+
+However, the upsampling part of the process is defined by the strides and the padding. In TensorFlow, using the tf.layers.conv2d_transpose, a stride of 2, and "SAME" padding would result in an output of dimensions 6x6. Let's look at a simple representation of this.
+
+If we have a 2x2 input and a 3x3 kernel; with "SAME" padding, and a stride of 2 we can expect an output of dimension 4x4. The following image gives an idea of the process.
+![](https://cdn-images-1.medium.com/max/1600/0*NBKHZlXvqOg3R6_z.gif)
+
+### skip connections
+
+deep features can be obtained when going deeper, spatial location information is also lost when going deeper. That means output from shallower layers have more location information. If we combine both, we can enhance the result.
+To combine, we fuse the output (by element-wise addition):
+
+![](https://cdn-images-1.medium.com/max/1600/1*lUnNaKAjL-Mq10v3tIBtJg.png)
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_YdF6O6t2BHGHWBEk91EIYUqfX2cRi7sc4wBIjndSCpJR0cZ8A)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -130,7 +194,7 @@ https://en.wikipedia.org/wiki/Deep_learning
 
 https://datascience.stackexchange.com/questions/14984/what-is-an-inception-layer
 
-
+https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1
 
 
 
