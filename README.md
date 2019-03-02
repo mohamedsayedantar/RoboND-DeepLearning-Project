@@ -15,7 +15,8 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 5. projects code 
 6. training the model
 7. best model and Hyperparameters
-7. References
+8. future enhancements
+9. References
 
 
 
@@ -716,14 +717,18 @@ for set 5 output
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_8.png)
 
 
+## future enhancements
+- increasing the number of data captured with various positions to get better data collection will improve the accuracy.
+- by increasing the number of layers may lead to better accuracy.
+- tune each hyperparameter alone to get better results.
+- trying various architectures may lead to find a better one than the previous one.
 
 
+**would this model and data work well for following another object (dog, cat, car, etc.) instead of a human ?**
+yes we can use the same model to identify another objects or any other human or animals if needed, for the data we have to change the pointer to this new target which we want to follow, by changing the mask pictures with new set containing the new target, but may using the same number of layers and same hayperparameters lead to different accuracy with the other target.
 
 
-
-
-
-
+**note:** sometimes i stop the the training at any epoch to prevent overfitting.
 
 
 
