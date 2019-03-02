@@ -86,6 +86,10 @@ A 1x1xD convolution can substitute any fully connected layer because of this equ
 
 In addition, 1x1xD convolutions not only reduce the features in input to the next layer, but also introduces new parameters and new non-linearity into the network that will help to increase model accuracy.
 
+A fully-connected layer of the same size would result in the same number of features. However, replacement of fully-connected layers with convolutional layers presents an added advantage that during inference (testing your model), you can feed images of any size into your trained network.
+
+![1x1_2](https://d17h27t6h515a5.cloudfront.net/topher/2017/September/59bb1431_1x1convolution/1x1convolution.png)
+
 ![1x1](https://raw.githubusercontent.com/iamaaditya/iamaaditya.github.io/master/images/conv_arithmetic/full_padding_no_strides_transposed_small.gif)
 
 #### 3x3 examble 
@@ -99,6 +103,8 @@ The key idea for devising this architecture is to deploy multiple convolutions w
 ![inc](https://i.stack.imgur.com/iNy2U.png)
 
 The intention is to let the neural network learn the best weights when training the network and automatically select the more useful features. Additionally, it intends to reduce the no. of dimensions so that the no. of units and layers can be increased at later stages. The side-effect of this is to increase the computational cost for training this layer.
+
+## Fully Convolutional Neural Networks
 
 
 
