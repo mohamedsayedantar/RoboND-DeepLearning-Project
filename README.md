@@ -150,6 +150,23 @@ To combine, we fuse the output (by element-wise addition):
 ![](https://cdn-images-1.medium.com/max/1600/1*lUnNaKAjL-Mq10v3tIBtJg.png)
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_YdF6O6t2BHGHWBEk91EIYUqfX2cRi7sc4wBIjndSCpJR0cZ8A)
 
+
+
+### Intersection over Union (IoU) metric
+
+Intersect over Union (IoU) is a metric that allows us to evaluate how similar our predicted bounding box is to the ground truth bounding box. The idea is that we want to compare the ratio of the area where the two boxes overlap to the total combined area of the two boxes.
+
+The formula for calculating IoU is as follows
+
+![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_formula.png)
+
+IoU is quite intuitive to interpret. A score of 1 means that the predicted bounding box precisely matches the ground truth bounding box. A score of 0 means that the predicted and true bounding box do not overlap at all.
+
+![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_scores.png)
+
+
+
+
 ## project instructions and details
 
 In this project, you will train a deep neural network to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
@@ -310,17 +327,7 @@ $ python follower.py my_amazing_model.h5
 
 **Note:** If you'd like to see an overlay of the detected region on each camera frame from the drone, simply pass the `--pred_viz` parameter to `follower.py`
 
-### Intersection over Union (IoU) metric
 
-Intersect over Union (IoU) is a metric that allows us to evaluate how similar our predicted bounding box is to the ground truth bounding box. The idea is that we want to compare the ratio of the area where the two boxes overlap to the total combined area of the two boxes.
-
-The formula for calculating IoU is as follows
-
-![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_formula.png)
-
-IoU is quite intuitive to interpret. A score of 1 means that the predicted bounding box precisely matches the ground truth bounding box. A score of 0 means that the predicted and true bounding box do not overlap at all.
-
-![](http://ronny.rest/media/tutorials/localization/ZZZ_IMAGES_DIR/iou_scores.png)
 
 ## project code
 
