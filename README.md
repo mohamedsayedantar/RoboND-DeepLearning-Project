@@ -620,8 +620,8 @@ val_following, pred_following = model_tools.write_predictions_grade_set(model,
                                         run_num,'following_images', 'sample_evaluation_data')
 ```
 
-**images while following the target**
-by running
+**images while following the target,**
+by running:
 ```python
 im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','following_images', run_num) 
 for i in range(3):
@@ -632,8 +632,8 @@ for i in range(3):
 the output should be something like this
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out1.png)
 
-**images while at patrol without target**
-by running
+**images while at patrol without target,**
+by running:
 ```python
 im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','patrol_non_targ', run_num) 
 for i in range(3):
@@ -644,8 +644,8 @@ for i in range(3):
 the output should be something like this
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out2.png)
 
-**images while at patrol with target**
-by running 
+**images while at patrol with target,**
+by running:
 
 ```python
 im_files = plotting_tools.get_im_file_sample('sample_evaluation_data','patrol_with_targ', run_num) 
@@ -657,21 +657,33 @@ for i in range(3):
 the output should be something like this
 ![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/out3.png)
 
+**Scores for while the quad is following behind the target,**
+by running:
+```python
+true_pos1, false_pos1, false_neg1, iou1 = scoring_utils.score_run_iou(val_following, pred_following)
+```
+
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_3.png)
+
+**Scores for images while the quad is on patrol and the target is not visable,**
+by running:
+```python
+true_pos2, false_pos2, false_neg2, iou2 = scoring_utils.score_run_iou(val_no_targ, pred_no_targ)
+```
+
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_4.png)
 
 
+**This score measures how well the neural network can detect the target from far away,**
+by running:
+```python
+true_pos3, false_pos3, false_neg3, iou3 = scoring_utils.score_run_iou(val_with_targ, pred_with_targ)
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
+the output should be something like this
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set5_5.png)
 
 
 
