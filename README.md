@@ -11,7 +11,10 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 1. Neural Networks & Deep Neural Networks
 2. Convolutional Neural Networks
 3. Fully Convolutional Neural Networks
-. References
+4. project details
+5. projects code 
+6. training the model
+7. References
 
 
 
@@ -145,105 +148,14 @@ To combine, we fuse the output (by element-wise addition):
 ![](https://cdn-images-1.medium.com/max/1600/1*lUnNaKAjL-Mq10v3tIBtJg.png)
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_YdF6O6t2BHGHWBEk91EIYUqfX2cRi7sc4wBIjndSCpJR0cZ8A)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### References
-
-http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
-
-https://searchenterpriseai.techtarget.com/definition/neural-network
-
-https://en.wikipedia.org/wiki/Deep_learning
-
-https://datascience.stackexchange.com/questions/14984/what-is-an-inception-layer
-
-https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Deep Learning Project ##
+## project details
 
 In this project, you will train a deep neural network to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
 
 [image_0]: ./docs/misc/sim_screenshot.png
 ![alt text][image_0] 
 
-## Setup Instructions
+### Setup Instructions
 **Clone the repository**
 ```
 $ git clone https://github.com/udacity/RoboND-DeepLearning.git
@@ -395,3 +307,20 @@ $ python follower.py my_amazing_model.h5
 ```
 
 **Note:** If you'd like to see an overlay of the detected region on each camera frame from the drone, simply pass the `--pred_viz` parameter to `follower.py`
+
+
+
+
+
+
+### References
+
+http://pages.cs.wisc.edu/~bolo/shipyard/neural/local.html
+
+https://searchenterpriseai.techtarget.com/definition/neural-network
+
+https://en.wikipedia.org/wiki/Deep_learning
+
+https://datascience.stackexchange.com/questions/14984/what-is-an-inception-layer
+
+https://towardsdatascience.com/review-fcn-semantic-segmentation-eb8c9b50d2d1
