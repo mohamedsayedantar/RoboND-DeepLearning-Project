@@ -113,15 +113,18 @@ Object Detection: Classify and detect the object(s) within an image with boundin
 Semantic Segmentation: Classify the object class for each pixel within an image. That means there is a label for each pixel.
 
 In classification, conventionally, an input image is downsized and goes through the convolution layers and fully connected (FC) layers, and output one predicted label for the input image, as follows:
+
 ![](https://cdn-images-1.medium.com/max/1600/1*ErOVnlmtWYFGpnpvKJImKw.png)
 
 in case we turn the FC layers into 1×1 convolutional layers:
 ![](https://cdn-images-1.medium.com/max/1600/1*11XDuwNHHRE7EB_fu_TzCg.png)
 
 And if the image is not downsized, the output will not be a single label. Instead, the output has a size smaller than the input image:
+
 ![](https://cdn-images-1.medium.com/max/1600/1*T-tYcj11_qySDHTRhlF9pQ.png)
 
 If we upsample the output above, then we can calculate the pixelwise output (label map) as below:
+
 ![](https://cdn-images-1.medium.com/max/1600/1*LtSSJ9QP0Y9qWG9nz9sb2w.png)
 ![](https://cdn-images-1.medium.com/max/1600/1*NXNGhfSyzQcKzoOSt-Z0Ng.png)
 
@@ -130,7 +133,8 @@ Transposed Convolutions help in upsampling the previous layer to a desired resol
 
 However, the upsampling part of the process is defined by the strides and the padding. In TensorFlow, using the tf.layers.conv2d_transpose, a stride of 2, and "SAME" padding would result in an output of dimensions 6x6. Let's look at a simple representation of this.
 
-If we have a 2x2 input and a 3x3 kernel; with "SAME" padding, and a stride of 2 we can expect an output of dimension 4x4. The following image gives an idea of the process.
+If we have a 2x2 input and a 3x3 kernel; with "SAME" padding, and a stride of 2 we can expect an output of dimension 4x4.
+
 ![](https://cdn-images-1.medium.com/max/1600/0*NBKHZlXvqOg3R6_z.gif)
 
 ### skip connections
