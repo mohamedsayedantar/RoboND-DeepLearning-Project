@@ -14,6 +14,7 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 4. project instructions and details
 5. projects code 
 6. training the model
+7. best model and Hyperparameters
 7. References
 
 
@@ -439,8 +440,84 @@ by trying several structures to get the best model in this case the most proper 
 2. 1x1 convolutional layer
 3. 3 decoders
 
+## training the model
+
+```python
+image_hw = 160
+image_shape = (image_hw, image_hw, 3)
+inputs = layers.Input(image_shape)
+num_classes = 3
+
+# Call fcn_model()
+output_layer = fcn_model(inputs, num_classes)
+```
+
+### Hyperparameters
+
+1. batch_size: number of training samples/images that get propagated through the network in a single pass.
+2. num_epochs: number of times the entire training dataset gets propagated through the network.
+3. steps_per_epoch: number of batches of training images that go through the network in 1 epoch. We have provided you with a default value. One recommended value to try would be based on the total number of images in training dataset divided by the batch_size.
+4. validation_steps: number of batches of validation images that go through the network in 1 epoch. This is similar to steps_per_epoch, except validation_steps is for the validation dataset. We have provided you with a default value for this as well.
+5. workers: maximum number of processes to spin up. This can affect your training speed and is dependent on your hardware. We have provided a recommended value to work with.
+
+```python
+learning_rate = 0.001
+batch_size = 25
+num_epochs = 100
+steps_per_epoch = 200
+validation_steps = 50
+workers = 2
+```
+by tuning the Hyperparameters to get the best model, the following are 5 Hyperparameters sets of my tested sets:-
+
+**set 1**
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set1_1.png)
+**set 2**
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set2_1.png)
+**set 3**
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set3_1.png)
+**set 4 & 5**
+![](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/set4_1.png)
 
 
+
+
+
+
+
+### start training by running:-
+```python
+from workspace_utils import active_session
+# Keeping Your Session Active
+with active_session():
+    # Define the Keras model and compile it for training
+    model = models.Model(inputs=inputs, outputs=output_layer)
+
+    model.compile(optimizer=keras.optimizers.Adam(learning_rate), loss='categorical_crossentropy')
+
+    # Data iterators for loading the training and validation data
+    train_iter = data_iterator.BatchIteratorSimple(batch_size=batch_size,
+                                                   data_folder=os.path.join('..', 'data', 'train'),
+                                                   image_shape=image_shape,
+                                                   shift_aug=True)
+
+    val_iter = data_iterator.BatchIteratorSimple(batch_size=batch_size,
+                                                 data_folder=os.path.join('..', 'data', 'validation'),
+                                                 image_shape=image_shape)
+
+    logger_cb = plotting_tools.LoggerPlotter()
+    callbacks = [logger_cb]
+
+    model.fit_generator(train_iter,
+                        steps_per_epoch = steps_per_epoch, # the number of batches per epoch,
+                        epochs = num_epochs, # the number of epochs to train for,
+                        validation_data = val_iter, # validation iterator
+                        validation_steps = validation_steps, # the number of batches to validate on
+                        callbacks=callbacks,
+                        workers = workers)
+```
+
+## best model and Hyperparameters
 
 
 
