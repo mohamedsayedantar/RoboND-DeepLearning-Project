@@ -11,7 +11,7 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 1. Neural Networks & Deep Neural Networks
 2. Convolutional Neural Networks
 3. Fully Convolutional Neural Networks
-4. project details
+4. project instructions and details
 5. projects code 
 6. training the model
 7. References
@@ -148,7 +148,7 @@ To combine, we fuse the output (by element-wise addition):
 ![](https://cdn-images-1.medium.com/max/1600/1*lUnNaKAjL-Mq10v3tIBtJg.png)
 ![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2_YdF6O6t2BHGHWBEk91EIYUqfX2cRi7sc4wBIjndSCpJR0cZ8A)
 
-## project details
+## project instructions and details
 
 In this project, you will train a deep neural network to identify and track a target in simulation. So-called “follow me” applications like this are key to many fields of robotics and the very same techniques you apply here could be extended to scenarios like advanced cruise control in autonomous vehicles or human-robot collaboration in industry.
 
@@ -195,14 +195,14 @@ If for some reason you choose not to use Anaconda, you must install the followin
 * transforms3d
 * PyQt4/Pyqt5
 
-## Implement the Segmentation Network
+### Implement the Segmentation Network
 1. Download the training dataset from above and extract to the project `data` directory.
 2. Implement your solution in model_training.ipynb
 3. Train the network locally, or on [AWS](https://classroom.udacity.com/nanodegrees/nd209/parts/09664d24-bdec-4e64-897a-d0f55e177f09/modules/cac27683-d5f4-40b4-82ce-d708de8f5373/lessons/197a058e-44f6-47df-8229-0ce633e0a2d0/concepts/27c73209-5d7b-4284-8315-c0e07a7cd87f?contentVersion=1.0.0&contentLocale=en-us).
 4. Continue to experiment with the training data and network until you attain the score you desire.
 5. Once you are comfortable with performance on the training dataset, see how it performs in live simulation!
 
-## Collecting Training Data ##
+### Collecting Training Data ###
 A simple training dataset has been provided in this project's repository. This dataset will allow you to verify that your segmentation network is semi-functional. However, if your interested in improving your score,you may want to collect additional training data. To do it, please see the following steps.
 
 The data directory is organized as follows:
@@ -255,12 +255,12 @@ Rename or move `data/train`, and `data/validation`, then move `data/processed_im
 Merging multiple `train` or `validation` may be difficult, it is recommended that data choices be determined by what you include in `raw_sim_data/train/run1` with possibly many different runs in the directory. You can create a temporary folder in `data/` and store raw run data you don't currently want to use, but that may be useful for later. Choose which `run_x` folders to include in `raw_sim_data/train`, and `raw_sim_data/validation`, then run  `preprocess_ims.py` from within the 'code/' directory to generate your new training and validation sets. 
 
 
-## Training, Predicting and Scoring ##
+### Training, Predicting ###
 With your training and validation data having been generated or downloaded from the above section of this repository, you are free to begin working with the neural net.
 
 **Note**: Training CNNs is a very compute-intensive process. If your system does not have a recent Nvidia graphics card, with [cuDNN](https://developer.nvidia.com/cudnn) and [CUDA](https://developer.nvidia.com/cuda) installed , you may need to perform the training step in the cloud. Instructions for using AWS to train your network in the cloud may be found [here](https://classroom.udacity.com/nanodegrees/nd209/parts/09664d24-bdec-4e64-897a-d0f55e177f09/modules/cac27683-d5f4-40b4-82ce-d708de8f5373/lessons/197a058e-44f6-47df-8229-0ce633e0a2d0/concepts/27c73209-5d7b-4284-8315-c0e07a7cd87f?contentVersion=1.0.0&contentLocale=en-us)
 
-### Training your Model ###
+#### Training your Model ####
 **Prerequisites**
 - Training data is in `data` directory
 - Validation data is in the `data` directory
@@ -276,7 +276,7 @@ The **sample_evalution_data** directory contains data specifically designed to t
 
 The notebook has examples of how to evaulate your model once you finish training. Think about the sourcing methods, and how the information provided in the evaluation sections relates to the final score. Then try things out that seem like they may work. 
 
-## Scoring ##
+### Scoring ###
 
 To score the network on the Follow Me task, two types of error are measured. First the intersection over the union for the pixelwise classifications is computed for the target channel. 
 
@@ -298,7 +298,7 @@ Collect more data from the sim. Look at the predictions think about what the net
 
 Share your scores in slack, and keep a tally in a pinned message. Scores should be computed on the sample_evaluation_data. This is for fun, your grade will be determined on unreleased data. If you use the sample_evaluation_data to train the network, it will result in inflated scores, and you will not be able to determine how your network will actually perform when evaluated to determine your grade.
 
-## Experimentation: Testing in Simulation
+### Experimentation: Testing in Simulation
 1. Copy your saved model to the weights directory `data/weights`.
 2. Launch the simulator, select "Spawn People", and then click the "Follow Me" button.
 3. Run the realtime follower script
@@ -307,6 +307,161 @@ $ python follower.py my_amazing_model.h5
 ```
 
 **Note:** If you'd like to see an overlay of the detected region on each camera frame from the drone, simply pass the `--pred_viz` parameter to `follower.py`
+
+## project code
+
+first importing the required libraries and methods
+
+```python
+import os
+import glob
+import sys
+import tensorflow as tf
+
+from scipy import misc
+import numpy as np
+
+from tensorflow.contrib.keras.python import keras
+from tensorflow.contrib.keras.python.keras import layers, models
+
+from tensorflow import image
+
+from utils import scoring_utils
+from utils.separable_conv2d import SeparableConv2DKeras, BilinearUpSampling2D
+from utils import data_iterator
+from utils import plotting_tools 
+from utils import model_tools
+```
+
+### Separable Convolutions
+The Encoder for the FCN will essentially require separable convolution layers, due to their advantages. The 1x1 convolution layer in the FCN, however, is a regular convolution. Implementations for both are provided. Each includes batch normalization with the ReLU activation function applied to the layers.
+
+```python
+def separable_conv2d_batchnorm(input_layer, filters, strides=1):
+    output_layer = SeparableConv2DKeras(filters=filters,kernel_size=3, strides=strides,
+                             padding='same', activation='relu')(input_layer)
+    
+    output_layer = layers.BatchNormalization()(output_layer) 
+    return output_layer
+
+def conv2d_batchnorm(input_layer, filters, kernel_size=3, strides=1):
+    output_layer = layers.Conv2D(filters=filters, kernel_size=kernel_size, strides=strides, 
+                      padding='same', activation='relu')(input_layer)
+    
+    output_layer = layers.BatchNormalization()(output_layer) 
+    return output_layer
+    
+```
+
+### Bilinear Upsampling
+The following helper function implements the bilinear upsampling layer. Upsampling by a factor of 2 is generally recommended. Upsampling is used in the decoder block of the FCN.
+```python
+def bilinear_upsample(input_layer):
+    output_layer = BilinearUpSampling2D((2,2))(input_layer)
+    return output_layer
+```
+
+### Building the Model
+
+first Encoder Block:-
+
+Create an encoder block that includes a separable convolution layer using the separable_conv2d_batchnorm() function. The filters parameter defines the size or depth of the output layer. For example, 32 or 64.
+
+```python
+def encoder_block(input_layer, filters, strides):
+    
+    # TODO Create a separable convolution layer using the separable_conv2d_batchnorm() function.
+    output_layer = separable_conv2d_batchnorm(input_layer, filters, strides=strides)
+    return output_layer
+```
+
+second the Decoder Block:-
+
+The decoder block is comprised of three parts:
+
+1. A bilinear upsampling layer using the upsample_bilinear() function. The current recommended factor for upsampling is set to 2.
+2. A layer concatenation step. This step is similar to skip connections.
+3. Some (one or two) additional separable convolution layers to extract some more spatial information from prior layers.
+
+```python
+def decoder_block(small_ip_layer, large_ip_layer, filters):
+    
+    # TODO Upsample the small input layer using the bilinear_upsample() function.
+    output_layer = bilinear_upsample(small_ip_layer)
+    # TODO Concatenate the upsampled and large input layers using layers.concatenate
+    output_layer = layers.concatenate([output_layer, large_ip_layer])
+    # TODO Add some number of separable convolution layers
+    output_layer = separable_conv2d_batchnorm(output_layer, filters, strides=1)
+    return output_layer
+```
+
+### the model
+
+
+```python
+def fcn_model(inputs, num_classes):
+    #print(inputs)
+
+    # TODO Add Encoder Blocks. 
+    # Remember that with each encoder layer, the depth of your model (the number of filters) increases.
+    x1 = encoder_block(inputs, 32, 2)
+    #print(x1)
+    x2 = encoder_block(x1, 64, 2)
+    #print(x2)
+    x3 = encoder_block(x2, 128, 2)
+    #print(x3)
+    #x31 = encoder_block(x3, 256, 2)
+    #x32 = encoder_block(x31, 512, 2)
+    
+    # TODO Add 1x1 Convolution layer using conv2d_batchnorm().
+    x4 = conv2d_batchnorm(x3, filters=256, kernel_size=1, strides=1)
+    #x43 = conv2d_batchnorm(x4, filters=256, kernel_size=1, strides=1)
+    #x44 = conv2d_batchnorm(x43, filters=256, kernel_size=1, strides=1)
+    #x45 = conv2d_batchnorm(x44, filters=256, kernel_size=1, strides=1)
+    #print(x4)
+    # TODO: Add the same number of Decoder Blocks as the number of Encoder Blocks
+    
+    #x41 = decoder_block(x45, x31, 512)
+    #x42 = decoder_block(x41, x3, 256)
+    x5 = decoder_block(x4, x2, 128)
+    #print(x5)
+    x6 = decoder_block(x5, x1, 64)
+    #print(x6)
+    x7 = decoder_block(x6, inputs, 32)
+    x = x7
+    #print(x)
+    
+    return layers.Conv2D(num_classes, 3, activation='softmax', padding='same')(x)
+```
+
+by trying several structures to get the best model in this case the most proper structure is
+1. 3 encoders
+2. 1x1 convolutional layer
+3. 3 decoders
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
