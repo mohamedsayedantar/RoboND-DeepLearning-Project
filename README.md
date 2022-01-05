@@ -1,6 +1,6 @@
 # Deep Learning Project "Follow Me" [![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
 
-flying a drone in simulation to locate and follow a moving target by analysing individual camera from the front facing of the drone, then by classifying each pixel of each frame using FCN (fully convolutional neural network)
+flying a drone in simulation to locate and follow a moving target by analyzing individual camera from the front facing of the drone, then by classifying each pixel of each frame using FCN (fully convolutional neural network)
 
 ![drone](https://github.com/mohamedsayedantar/RoboND-DeepLearning-Project/blob/master/images/1.png)
 ![drone2](https://investorsking.com/wp-content/uploads/2017/04/Drones.jpg)
@@ -22,7 +22,7 @@ flying a drone in simulation to locate and follow a moving target by analysing i
 
 ## Neural Networks & Deep Neural Networks :-
 
-### what is neural networks or ANN (Artificial neural networks)
+### what are neural networks or ANN (Artificial neural networks)
 A neural network is a system of hardware and/or software patterned after the operation of neurons in the human brain. Neural networks (also called artificial neural networks) are a variety of deep learning technology, which also falls under the umbrella of artificial intelligence, or AI.
 
 Commercial applications of these technologies generally focus on solving complex signal processing or pattern recognition problems. Examples of significant commercial applications since 2000 include handwriting recognition for check processing, speech-to-text transcription, oil-exploration data analysis, weather prediction and facial recognition.
